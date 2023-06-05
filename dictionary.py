@@ -1,21 +1,21 @@
 import mysql.connector
 
-db = mysql.connector.connect(
-    user='ardit700_student',
-    password='ardit700_student',
-    host='108.167.140.122',
-    database='ardit700_pmldatabase'
+con = mysql.connector.connect(
+user = "ardit700_student",
+password = "ardit700_student",
+host = "108.167.140.122",
+database = "ardit700_pm1database"
 )
-cursor = db.cursor()
 
-word = input('Enter word: ')
+cursor = con.cursor()
 
-query = cursor.execute('SELECT * FROM Dictionary WHERE Expretion=%s'%word)
+word=input("Enter the word: ")
+
+query = cursor.execute("SELECT Definition FROM Dictionary WHERE Expression = '%s'" % word)
 results = cursor.fetchall()
 
 if results:
     for result in results:
-        print(result[1])
+        print(result[0])
 else:
-    print('dosen\'t exist')
-    
+    print("No word found!")
